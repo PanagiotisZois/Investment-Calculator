@@ -12,10 +12,10 @@
         <tbody>
             <tr *ngFor="let result of results">
                 <td>{{ result.year }}</td>
-                <td>{{ result.valueEndOfYear | currency:"EUR"}}</td>
-                <td>{{ result.interest | currency:"EUR"}}</td>
-                <td>{{ result.totalInterest | currency:"EUR"}}</td>
-                <td>{{ result.totalAmountInvested | currency:"EUR"}}</td>
+                <td>{{ result.valueEndOfYear | currency:"EUR" }}</td>
+                <td>{{ result.interest | currency:"EUR" }}</td>
+                <td>{{ result.totalInterest | currency:"EUR" }}</td>
+                <td>{{ result.totalAmountInvested | currency:"EUR" }}</td>
             </tr>
         </tbody>
     </table>

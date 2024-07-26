@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
 import type { InverstmentInput } from '../app/investment-input.model';
@@ -8,25 +8,28 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, 
-            UserInputComponent,
-            InvestmentResultsComponent,
-            CommonModule],
+  imports: [
+    HeaderComponent, 
+    UserInputComponent,
+    InvestmentResultsComponent,
+    CommonModule
+  ],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  resultsData ?: {
-    year: number;
-    interest: number;
-    valueEndOfYear: number;
-    annualInvestment: number;
-    totalInterest: number;
-    totalAmountInvested: number;
-  }[];
+  resultsData = signal<
+    { 
+      year: number;
+      interest: number;
+      valueEndOfYear: number;
+      annualInvestment: number;
+      totalInterest: number;
+      totalAmountInvested: number;
+    }[] | undefined
+  >(undefined);
   
-  onCalculateInvestmentResults(data: InverstmentInput)
-  { 
-    const {initialInvestment, annualInvestment, expectedReturn, duration} = data;
+  onCalculateInvestmentResults(data: InverstmentInput) { 
+    const { initialInvestment, annualInvestment, expectedReturn, duration } = data;
     const annualData = [];
     let investmentValue = initialInvestment;
   
@@ -34,8 +37,7 @@ export class AppComponent {
       const year = i + 1;
       const interestEarnedInYear = investmentValue * (expectedReturn / 100);
       investmentValue += interestEarnedInYear + annualInvestment;
-      const totalInterest =
-        investmentValue - annualInvestment * year - initialInvestment;
+      const totalInterest = investmentValue - annualInvestment * year - initialInvestment;
       annualData.push({
         year: year,
         interest: interestEarnedInYear,
@@ -46,8 +48,6 @@ export class AppComponent {
       });
     }
 
-    this.resultsData = annualData;
-  
+    this.resultsData.set(annualData);
   }
-
 }
