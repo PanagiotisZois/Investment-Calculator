@@ -45,8 +45,8 @@
                   "maximumError": "4kb"
                 }
               ],
+              "baseHref": "/Investment-Calculator/",
               "outputHashing": "all",
-              "baseHref": "./"
             },
             "development": {
               "optimization": false,
