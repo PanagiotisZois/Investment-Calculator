@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "",
+            "outputPath": "docs",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -45,7 +45,6 @@
                   "maximumError": "4kb"
                 }
               ],
-              "baseHref": "/Investment-Calculator/",
               "outputHashing": "all"
             },
             "development": {
